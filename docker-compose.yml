@@ -6,11 +6,24 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./web-config.yml:/etc/prometheus/web-config.yml      
+      - ./certs/example-prometheus.com.crt:/etc/prometheus/certs/example-prometheus.com.crt
+      - ./certs/example-prometheus.com.key:/etc/prometheus/certs/example-prometheus.com.key
+    command: >
+      --config.file=/etc/prometheus/prometheus.yml
+      --storage.tsdb.path=/prometheus
+      --web.console.libraries=/usr/share/prometheus/console_libraries
+      --web.console.templates=/usr/share/prometheus/consoles
+      --web.config.file=/etc/prometheus/web-config.yml
+      --web.external-url=https://example-prometheus.com
 
   grafana:
     image: "grafana/grafana"
     ports:
       - "3000:3000"
-      
+
   ubuntu:
     build: .
+    # image: "ubuntu:latest"
+    # tty: true
+
