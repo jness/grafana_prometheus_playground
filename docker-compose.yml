@@ -9,6 +9,7 @@ services:
       - ./web-config.yml:/etc/prometheus/web-config.yml      
       - ./certs/example-prometheus.com.crt:/etc/prometheus/certs/example-prometheus.com.crt
       - ./certs/example-prometheus.com.key:/etc/prometheus/certs/example-prometheus.com.key
+      - ./certs/example-node.com.crt:/etc/prometheus/certs/node_exporter.crt
     command: >
       --config.file=/etc/prometheus/prometheus.yml
       --storage.tsdb.path=/prometheus
@@ -17,13 +18,18 @@ services:
       --web.config.file=/etc/prometheus/web-config.yml
       --web.external-url=https://example-prometheus.com
 
-  grafana:
-    image: "grafana/grafana"
-    ports:
-      - "3000:3000"
+  # grafana:
+  #   image: "grafana/grafana"
+  #   ports:
+  #     - "3000:3000"
 
   ubuntu:
     build: .
-    # image: "ubuntu:latest"
-    # tty: true
-
+    ports:
+      - "9100:9100"
+    volumes:
+      - ./node-config.yml:/node_exporter-1.7.0.linux-amd64/config.yml
+      - ./certs/example-node.com.crt:/node_exporter-1.7.0.linux-amd64/node_exporter.crt
+      - ./certs/example-node.com.key:/node_exporter-1.7.0.linux-amd64/node_exporter.key
+    command: >
+      ./node_exporter --web.config.file=/node_exporter-1.7.0.linux-amd64/config.yml

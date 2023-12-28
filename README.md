@@ -1,14 +1,25 @@
 # Grafana and Prometheus Playground
 
-This is a very simple playground with nearly nothing custom.
-
 Our `docker-compose.yaml` creates 3 containers:
 
-* Prometheus (using our custom prometheus.yml config)
+* Prometheus (using our custom prometheus.yml and web-config.yml configs)
 * Grafana
-* Ubuntu (built from Dockerfile to run `node-exporter`)
+* Ubuntu (built from Dockerfile to run `node-exporter` using node-config.yml config)
 
-## Startup using docker-compose:
+## Create certs
+
+Use the certs [readme](certs)
+
+## Create password for node-exporter
+
+Default username and password are user/password, but can be updated using
+the htpasswd command and by modifying `prometheus.yml`` and `node-config.yml``
+
+```
+htpasswd -nBC 10 "" | tr -d ':\n'; echo
+```
+
+## Startup
 
 ```
 docker-compose up
