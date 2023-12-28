@@ -18,10 +18,10 @@ services:
       --web.config.file=/etc/prometheus/web-config.yml
       --web.external-url=https://example-prometheus.com
 
-  # grafana:
-  #   image: "grafana/grafana"
-  #   ports:
-  #     - "3000:3000"
+  grafana:
+    image: "grafana/grafana"
+    ports:
+      - "3000:3000"
 
   ubuntu:
     build: .
