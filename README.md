@@ -13,7 +13,7 @@ Use the certs [readme](certs)
 ## Create password for node-exporter
 
 Default username and password are user/password, but can be updated using
-the htpasswd command and by modifying `prometheus.yml`` and `node-config.yml``
+the htpasswd command and by modifying `prometheus.yml` and `node-config.yml`
 
 ```
 htpasswd -nBC 10 "" | tr -d ':\n'; echo
