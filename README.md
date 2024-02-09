@@ -33,16 +33,17 @@ Pushgateway is a metric store, it does not aggregate counts, merely stores a val
 You can push a metric using curl, [see documentation](https://github.com/prometheus/pushgateway?tab=readme-ov-file#command-line):
 
 ```
-$ echo "jenkins_build_success 1" | curl --data-binary @- http://localhost:9091/metrics/job/check_drift
+$ echo "my_number 1" | curl --data-binary @- http://localhost:9091/metrics/job/some_job
 ```
 
 and fetch a metric:
 
 ```
-$ curl -s -X GET http://localhost:9091/api/v1/metrics | jq -r '.data[].jenkins_build_success.metrics[].value'
+$ curl -s -X GET http://localhost:9091/api/v1/metrics | jq -r '.data[].my_number.metrics[].value'
 ```
 
-Included is a simple `counter.sh` script to continuously increment the value.
+Included is a simple `counter.sh` script to continuously increment the value,
+this will eventually fire the alert we've configured in `rules.yml`.
 
 ![alt text](pushgateway.jpg)
 

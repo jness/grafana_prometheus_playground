@@ -1,0 +1,10 @@
+groups:
+- name: Number checking
+  rules:
+  - alert: my_number too high
+    expr: my_number > 5
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: We like to keep this number low
