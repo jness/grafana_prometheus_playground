@@ -30,15 +30,5 @@ scrape_configs:
 
   # scrape our node_exporter for metrics
   - job_name: node
-
-    scheme: https
-
-    basic_auth:
-      username: user
-      password: password
-
-    tls_config:
-      ca_file: /etc/prometheus/certs/node_exporter.crt
-
     static_configs:
     - targets: ['ubuntu:9100']

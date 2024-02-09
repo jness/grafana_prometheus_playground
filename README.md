@@ -2,22 +2,12 @@
 
 Our `docker-compose.yaml` creates 3 containers:
 
-* Prometheus (using our custom prometheus.yml and web-config.yml configs)
+* Prometheus
 * Grafana
-* Ubuntu (built from Dockerfile to run `node-exporter` using node-config.yml config)
+* Ubuntu (built from Dockerfile to run `node-exporter`)
 
-## Create certs
-
-Use the certs [readme](certs)
-
-## Create password for node-exporter
-
-Default username and password are user/password, but can be updated using
-the htpasswd command and by modifying `prometheus.yml` and `node-config.yml`
-
-```
-htpasswd -nBC 10 "" | tr -d ':\n'; echo
-```
+If you wish to explore the setup with SSL certificates
+have a look at the `with-cert` branch.
 
 ## Startup
 
@@ -27,13 +17,25 @@ docker-compose up
 
 ## Access
 
-From your local machine:
+### Prometheus UI
 
-* http://localhost:9090  # prometheus ui
+* http://localhost:9090
 
 ![alt text](prometheus.jpg)
 
+### Grafana UI
 
-* http://localhost:3000  # grafana
+* http://localhost:3000
+
+> user: admin
+> password: admin
+
+Configure http://prometheus:9090 as a Prometheus data source:
+
+* http://localhost:3000/connections/datasources
+
+Explore prometheus's metrics:
+
+* http://localhost:3000/explore
 
 ![alt text](grafana.jpg)
