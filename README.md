@@ -48,10 +48,12 @@ $ curl -s -X GET http://localhost:9091/api/v1/metrics | jq -r '.data[].jenkins_b
 
 * http://localhost:3000
 
-> user: admin
-> password: admin
+```
+user: admin
+password: admin
+``````
 
-Configure http://prometheus:9090 as a Prometheus data source:
+Configure `http://prometheus:9090` as a Prometheus data source:
 
 * http://localhost:3000/connections/datasources
 
