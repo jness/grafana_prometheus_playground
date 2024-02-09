@@ -1,0 +1,21 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'alertmanager@localhost'
+
+route:
+  receiver: 'team-X'
+  repeat_interval: 3h
+
+  routes:
+  - matchers:
+    - severity=page
+    receiver: team-XS
+
+receivers:
+- name: 'team-X'
+  email_configs:
+  - to: 'team-X@localhost'
+
+- name: 'team-XS'
+  email_configs:
+  - to: 'team-XS@localhost'

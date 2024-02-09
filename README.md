@@ -1,8 +1,9 @@
 # Grafana and Prometheus Playground
 
-Our `docker-compose.yaml` creates 4 containers:
+Our `docker-compose.yaml` creates 5 containers:
 
 * Prometheus
+* AlertManager
 * [Pushgateway](https://github.com/prometheus/pushgateway)
 * Grafana
 * Ubuntu (built from Dockerfile to run `node-exporter`)
@@ -23,6 +24,12 @@ docker-compose up
 * http://localhost:9090
 
 ![alt text](prometheus.jpg)
+
+### AlertManager UI
+
+* http://localhost:9093
+
+![alt text](alertmanager.jpg)
 
 ### Pushgateway UI
 

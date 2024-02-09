@@ -15,6 +15,13 @@ services:
       --web.console.templates=/usr/share/prometheus/consoles
       --web.external-url=https://example-prometheus.com
 
+  alertmanager:
+    image: "prom/alertmanager"
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+
   pushgateway:
     image: "prom/pushgateway"
     ports:

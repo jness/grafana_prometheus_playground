@@ -13,6 +13,6 @@ do
   echo "Sending my_number $new"
   echo "my_number $new" | curl --data-binary @- http://localhost:9091/metrics/job/some_job
 
-  sleep 5
+  sleep 1
 done
 
