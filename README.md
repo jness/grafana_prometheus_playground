@@ -42,6 +42,8 @@ and fetch a metric:
 $ curl -s -X GET http://localhost:9091/api/v1/metrics | jq -r '.data[].jenkins_build_success.metrics[].value'
 ```
 
+Included is a simple `counter.sh` script to continuously increment the value.
+
 ![alt text](pushgateway.jpg)
 
 ### Grafana UI
