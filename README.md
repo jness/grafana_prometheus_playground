@@ -7,7 +7,7 @@ to use `docker-compose` for rapid development.
 * [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/)
 * [Pushgateway](https://github.com/prometheus/pushgateway)
 * [Grafana](https://grafana.com/oss/)
-* [Ubuntu](https://ubuntu.com/) (built from `Dockerfile` to run *node-exporter*)
+* [Ubuntu](https://ubuntu.com/) (built from `Dockerfile` to run **node-exporter**)
 
 
 ## Startup
