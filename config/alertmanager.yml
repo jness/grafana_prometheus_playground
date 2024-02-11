@@ -1,21 +1,18 @@
 global:
-  smtp_smarthost: 'localhost:25'
-  smtp_from: 'alertmanager@localhost'
+  resolve_timeout: 1m
+  slack_api_url: https://hooks.slack.com/services/{redacted}
 
 route:
-  receiver: 'team-X'
+  receiver: 'slack-notifications'
   repeat_interval: 3h
 
   routes:
   - matchers:
     - severity=page
-    receiver: team-XS
+    receiver: slack-notifications
 
 receivers:
-- name: 'team-X'
-  email_configs:
-  - to: 'team-X@localhost'
-
-- name: 'team-XS'
-  email_configs:
-  - to: 'team-XS@localhost'
+- name: 'slack-notifications'
+  slack_configs:
+  - channel: '#alertmanager'
+    send_resolved: true
