@@ -28,6 +28,8 @@ and restart the your pods using docker-compose.
  ✔ Container grafana_prometheus_playground-alertmanager-1  Created                                                                     0.0s
 ```
 
+### Quick demo
+
 [![youtube](images/video.jpg)](https://www.youtube.com/watch?v=nWUobmGyb4w)
 
 ## Access
@@ -40,6 +42,13 @@ listening on a localhost.
 * http://localhost:9090
 
 ### AlertManager UI
+
+The default configuration assumes an `.env` file exist with `SLACK_API_URL` set to your [Slack webhook](https://api.slack.com/start/quickstart):
+
+```
+% cat .env
+SLACK_API_URL=https://hooks.slack.com/services/REDACTED/REDACTED/REDACTED
+```
 
 * http://localhost:9093
 
