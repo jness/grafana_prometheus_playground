@@ -28,6 +28,7 @@ and restart the your pods using docker-compose.
  ✔ Container grafana_prometheus_playground-alertmanager-1  Created                                                                     0.0s
 ```
 
+[![youtube](https://img.youtube.com/vi/nWUobmGyb4w/0.jpg)](https://www.youtube.com/watch?v=nWUobmGyb4w)
 
 ## Access
 
@@ -38,13 +39,9 @@ listening on a localhost.
 
 * http://localhost:9090
 
-![alt text](images/prometheus.jpg)
-
 ### AlertManager UI
 
 * http://localhost:9093
-
-![alt text](images/alertmanager.jpg)
 
 ### Pushgateway UI
 
@@ -69,8 +66,6 @@ Included is a small counter script: `scripts/counter.sh`
 This script continuously increments the value of **my_number** by one,
 this will eventually fire the alert we've configured in `config/prometheues_rules.yml`.
 
-![alt text](images/pushgateway.jpg)
-
 ### Grafana UI
 
 * http://localhost:3000
@@ -87,5 +82,3 @@ Configure `http://prometheus:9090` as a Prometheus data source:
 Explore prometheus's metrics:
 
 * http://localhost:3000/explore
-
-![alt text](images/grafana.jpg)
