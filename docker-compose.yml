@@ -21,6 +21,7 @@ services:
       - "9093:9093"
     volumes:
       - ./config/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - ./data/alertmanager:/alertmanager
 
   pushgateway:
     image: "prom/pushgateway"
