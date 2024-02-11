@@ -1,23 +1,38 @@
 # Grafana and Prometheus Playground
 
-Our `docker-compose.yaml` creates 5 containers:
+This project wraps multiple prometheus services & grafana into a easy
+to use `docker-compose` for rapid development.
 
-* Prometheus
-* AlertManager
+* [Prometheus](https://prometheus.io/)
+* [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/)
 * [Pushgateway](https://github.com/prometheus/pushgateway)
-* Grafana
-* Ubuntu (built from Dockerfile to run `node-exporter`)
+* [Grafana](https://grafana.com/oss/)
+* [Ubuntu](https://ubuntu.com/) (built from `Dockerfile` to run *node-exporter*)
 
-If you wish to explore the setup with SSL certificates
-have a look at the `with-cert` branch.
 
 ## Startup
 
+A single `docker-compose up` will get you up and running. 
+
+Data will be persisted within the untracked `/data` directory.
+If you wish to wipe your data, merely delete this directory
+and restart the your pods using docker-compose.
+
 ```
-docker-compose up
+% docker-compose up
+[+] Running 5/0
+ ✔ Container grafana_prometheus_playground-ubuntu-1        Created                                                                     0.0s
+ ✔ Container grafana_prometheus_playground-pushgateway-1   Created                                                                     0.0s
+ ✔ Container grafana_prometheus_playground-prometheus-1    Created                                                                     0.0s
+ ✔ Container grafana_prometheus_playground-grafana-1       Created                                                                     0.0s
+ ✔ Container grafana_prometheus_playground-alertmanager-1  Created                                                                     0.0s
 ```
 
+
 ## Access
+
+Each of the services have their own web interface
+listening on a localhost.
 
 ### Prometheus UI
 
@@ -35,21 +50,23 @@ docker-compose up
 
 * http://localhost:9091
 
-Pushgateway is a metric store, it does not aggregate counts, merely stores a value for later scraping.
+> Pushgateway is a metric store, it does not aggregate counts, merely stores a value for later scraping.
 
-You can push a metric using curl, [see documentation](https://github.com/prometheus/pushgateway?tab=readme-ov-file#command-line):
+You can push a metric using curl: [documentation](https://github.com/prometheus/pushgateway?tab=readme-ov-file#command-line)
 
 ```
 $ echo "my_number 1" | curl --data-binary @- http://localhost:9091/metrics/job/some_job
 ```
 
-and fetch a metric:
+we are also able to use the api to fetch current metric data:
 
 ```
 $ curl -s -X GET http://localhost:9091/api/v1/metrics | jq -r '.data[].my_number.metrics[].value'
 ```
 
-Included is a simple `scripts/counter.sh` script to continuously increment the value,
+Included is a small counter script: `scripts/counter.sh`
+ 
+This script continuously increments the value of **my_number** by one,
 this will eventually fire the alert we've configured in `config/prometheues_rules.yml`.
 
 ![alt text](images/pushgateway.jpg)
