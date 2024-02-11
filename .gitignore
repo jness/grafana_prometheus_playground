@@ -1,4 +1,3 @@
 certs/*.crt
 certs/*.key
-prometheus_data/
-grafana_data/
+data/

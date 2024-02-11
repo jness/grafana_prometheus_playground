@@ -5,9 +5,9 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus_data:/prometheus
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./rules.yml:/etc/prometheus/rules.yml
+      - ./data/prometheus:/prometheus
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./config/prometheus_alert_rules.yml:/etc/prometheus/rules.yml
     command: >
       --config.file=/etc/prometheus/prometheus.yml
       --storage.tsdb.path=/prometheus
@@ -20,17 +20,23 @@ services:
     ports:
       - "9093:9093"
     volumes:
-      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+      - ./config/alertmanager.yml:/etc/alertmanager/alertmanager.yml
 
   pushgateway:
     image: "prom/pushgateway"
     ports:
       - "9091:9091"
+    volumes:
+      - ./data/pushgateway:/data
+    entrypoint: /bin/pushgateway
+    command: >
+      --persistence.file="/data/metric.store"
+      --persistence.interval=10s
 
   grafana:
     image: "grafana/grafana"
     volumes:
-      - ./grafana_data:/var/lib/grafana
+      - ./data/grafana:/var/lib/grafana
     ports:
       - "3000:3000"
 

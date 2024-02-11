@@ -23,13 +23,13 @@ docker-compose up
 
 * http://localhost:9090
 
-![alt text](prometheus.jpg)
+![alt text](images/prometheus.jpg)
 
 ### AlertManager UI
 
 * http://localhost:9093
 
-![alt text](alertmanager.jpg)
+![alt text](images/alertmanager.jpg)
 
 ### Pushgateway UI
 
@@ -49,10 +49,10 @@ and fetch a metric:
 $ curl -s -X GET http://localhost:9091/api/v1/metrics | jq -r '.data[].my_number.metrics[].value'
 ```
 
-Included is a simple `counter.sh` script to continuously increment the value,
-this will eventually fire the alert we've configured in `rules.yml`.
+Included is a simple `scripts/counter.sh` script to continuously increment the value,
+this will eventually fire the alert we've configured in `config/prometheues_rules.yml`.
 
-![alt text](pushgateway.jpg)
+![alt text](images/pushgateway.jpg)
 
 ### Grafana UI
 
@@ -71,4 +71,4 @@ Explore prometheus's metrics:
 
 * http://localhost:3000/explore
 
-![alt text](grafana.jpg)
+![alt text](images/grafana.jpg)
