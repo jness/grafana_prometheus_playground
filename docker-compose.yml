@@ -49,5 +49,6 @@ services:
     build: .
     ports:
       - "9100:9100"
+      - "8000:8000"
     command: >
       ./node_exporter

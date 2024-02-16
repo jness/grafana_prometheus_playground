@@ -91,3 +91,26 @@ Configure `http://prometheus:9090` as a Prometheus data source:
 Explore prometheus's metrics:
 
 * http://localhost:3000/explore
+
+
+### Python client
+
+The prometheus based python client works as a scrape target:
+https://prometheus.github.io/client_python/getting-started/three-step-demo/
+
+I've installed the python `prometheus-client` package in our **ubuntu** container,
+and setup this source as a scrape target in prometheus.
+
+You can access the console to run the script:
+
+```
+$ docker-compose exec -it ubuntu bash
+```
+
+```
+# python3 ../prometheus_client_example.py
+```
+
+With this script running we can view the client stats directly:
+
+* http://localhost:8000
