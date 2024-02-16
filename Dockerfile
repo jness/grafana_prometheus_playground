@@ -10,6 +10,7 @@ RUN pip install prometheus-client
 
 COPY bin/node_exporter-1.7.0.linux-amd64.tar.gz .
 COPY scripts/prometheus_client_example.py .
+COPY scripts/prometheus_client_pushgateway_example.py .
 
 RUN tar -zxvf node_exporter-1.7.0.linux-amd64.tar.gz
 

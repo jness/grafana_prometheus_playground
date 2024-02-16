@@ -107,8 +107,16 @@ You can access the console to run the script:
 $ docker-compose exec -it ubuntu bash
 ```
 
+There is a script that creates it's own http service:
+
 ```
 # python3 ../prometheus_client_example.py
+```
+
+Or one that pushes to our pushgateway instane:
+
+```
+# python3 ../prometheus_client_pushgateway_example.py
 ```
 
 With this script running we can view the client stats directly:
